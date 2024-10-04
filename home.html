@@ -9,14 +9,26 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            overflow: hidden; /* Menghindari scrollbar */
         }
 
         .header {
-            background-color: #333;
+            position: relative;
+            z-index: 1; /* Memastikan header muncul di atas video */
+            background-color: rgba(0, 0, 0, 0.5); /* Warna latar belakang setengah transparan */
             color: white;
             padding: 20px;
             text-align: center;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan video memenuhi seluruh layar */
+            z-index: 0; /* Memastikan video berada di belakang konten lainnya */
         }
 
         .products {
@@ -24,6 +36,7 @@
             justify-content: space-around;
             flex-wrap: wrap;
             margin: 20px;
+            z-index: 1; /* Memastikan produk muncul di atas video */
         }
 
         .product-card {
@@ -67,36 +80,45 @@
             background-color: #45a049;
         }
 
-        /* Pop-up Styles */
+        /* Popup styles */
         .popup {
-            display: none; /* Hide the popup by default */
+            display: none;
             position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2; /* Popup di atas semua konten */
+        }
+
+        .popup-content {
             background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            z-index: 1000; /* Ensure it is above other content */
+            border-radius: 5px;
+            text-align: center;
         }
 
-        .popup h2 {
-            margin-top: 0;
-        }
-
-        .popup button {
+        .close-btn {
             background-color: #f44336;
-            border: none;
             color: white;
-            padding: 10px 15px;
+            border: none;
+            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            float: right; /* Align the close button to the right */
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <!-- Header -->
     <div class="header">
@@ -111,8 +133,8 @@
             <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 1">
             <h2>Produk 1</h2>
             <p>Deskripsi singkat produk 1. Produk ini adalah salah satu yang terbaik di pasaran.</p>
-            <button>Beli Sekarang</button>
-            <button onclick="showPopup('Produk 1: Detail tentang produk 1 di sini.')">Detail Produk</button>
+            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            <button onclick="openPopup('Detail produk 1: Ini adalah informasi lengkap mengenai produk 1 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
         </div>
 
         <!-- Product Card 2 -->
@@ -120,8 +142,8 @@
             <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 2">
             <h2>Produk 2</h2>
             <p>Deskripsi singkat produk 2. Produk ini cocok untuk berbagai kebutuhan.</p>
-            <button>Beli Sekarang</button>
-            <button onclick="showPopup('Produk 2: Detail tentang produk 2 di sini.')">Detail Produk</button>
+            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            <button onclick="openPopup('Detail produk 2: Ini adalah informasi lengkap mengenai produk 2 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
         </div>
 
         <!-- Product Card 3 -->
@@ -129,26 +151,27 @@
             <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 3">
             <h2>Produk 3</h2>
             <p>Deskripsi singkat produk 3. Produk unggulan dengan kualitas terbaik.</p>
-            <button>Beli Sekarang</button>
-            <button onclick="showPopup('Produk 3: Detail tentang produk 3 di sini.')">Detail Produk</button>
+            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            <button onclick="openPopup('Detail produk 3: Ini adalah informasi lengkap mengenai produk 3 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
         </div>
     </div>
 
-    <!-- Pop-up Element -->
-    <div id="popup" class="popup">
-        <h2>Detail Produk</h2>
-        <p id="popup-content"></p>
-        <button onclick="closePopup()">Tutup</button>
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p id="popup-text"></p>
+            <button class="close-btn" onclick="closePopup()">Tutup</button>
+        </div>
     </div>
 
     <script>
-        function showPopup(detail) {
-            document.getElementById('popup-content').innerText = detail; // Set the popup content
-            document.getElementById('popup').style.display = 'block'; // Show the popup
+        function openPopup(text) {
+            document.getElementById('popup-text').innerText = text;
+            document.getElementById('popup').style.display = 'flex';
         }
 
         function closePopup() {
-            document.getElementById('popup').style.display = 'none'; // Hide the popup
+            document.getElementById('popup').style.display = 'none';
         }
     </script>
 
