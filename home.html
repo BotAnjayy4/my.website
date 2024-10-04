@@ -3,55 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Online</title>
+    <title>Toko Online dengan Video Latar Belakang</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Menghindari scrollbar */
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Content di atas video */
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px;
+            color: white;
         }
 
         .header {
-            position: relative;
-            z-index: 1; /* Memastikan header muncul di atas video */
-            background-color: rgba(0, 0, 0, 0.5); /* Warna latar belakang setengah transparan */
-            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Memastikan video memenuhi seluruh layar */
-            z-index: 0; /* Memastikan video berada di belakang konten lainnya */
+        .header h1 {
+            margin-bottom: 10px;
+            font-size: 36px;
         }
 
         .products {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin: 20px;
-            z-index: 1; /* Memastikan produk muncul di atas video */
         }
 
         .product-card {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
             padding: 20px;
             margin: 15px;
             width: 300px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .product-card img {
             max-width: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .product-card h2 {
@@ -59,16 +76,11 @@
             margin: 10px 0;
         }
 
-        .product-card p {
-            font-size: 16px;
-            color: #666;
-        }
-
         .product-card button {
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
             margin: 5px 0;
@@ -79,101 +91,50 @@
         .product-card button:hover {
             background-color: #45a049;
         }
-
-        /* Popup styles */
-        .popup {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2; /* Popup di atas semua konten */
-        }
-
-        .popup-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .close-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
 
     <!-- Video Background -->
     <video class="video-background" autoplay muted loop>
-        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        <source src="https://cdn.pixabay.com/vimeo/318611996/Cosmos%20-%203201.mp4?width=1280&hash=ebfc67e43164949940ebc4c2201fce16a22dcf2c" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <!-- Header -->
-    <div class="header">
-        <h1>Selamat Datang di Toko Online Kami</h1>
-        <p>Temukan produk terbaik dengan harga terjangkau!</p>
-    </div>
-
-    <!-- Products Section -->
-    <div class="products">
-        <!-- Product Card 1 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 1">
-            <h2>Produk 1</h2>
-            <p>Deskripsi singkat produk 1. Produk ini adalah salah satu yang terbaik di pasaran.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openPopup('Detail produk 1: Ini adalah informasi lengkap mengenai produk 1 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
+    <!-- Content -->
+    <div class="content">
+        <div class="header">
+            <h1>Selamat Datang di Toko Online Kami</h1>
+            <p>Temukan produk terbaik dengan harga terjangkau!</p>
         </div>
 
-        <!-- Product Card 2 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 2">
-            <h2>Produk 2</h2>
-            <p>Deskripsi singkat produk 2. Produk ini cocok untuk berbagai kebutuhan.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openPopup('Detail produk 2: Ini adalah informasi lengkap mengenai produk 2 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
-        </div>
+        <!-- Products Section -->
+        <div class="products">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 1">
+                <h2>Produk 1</h2>
+                <p>Deskripsi singkat produk 1.</p>
+                <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            </div>
 
-        <!-- Product Card 3 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 3">
-            <h2>Produk 3</h2>
-            <p>Deskripsi singkat produk 3. Produk unggulan dengan kualitas terbaik.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openPopup('Detail produk 3: Ini adalah informasi lengkap mengenai produk 3 yang dapat Anda ketahui sebelum membeli.')">Detail Produk</button>
-        </div>
-    </div>
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 2">
+                <h2>Produk 2</h2>
+                <p>Deskripsi singkat produk 2.</p>
+                <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            </div>
 
-    <!-- Popup -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <p id="popup-text"></p>
-            <button class="close-btn" onclick="closePopup()">Tutup</button>
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 3">
+                <h2>Produk 3</h2>
+                <p>Deskripsi singkat produk 3.</p>
+                <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
+            </div>
         </div>
     </div>
-
-    <script>
-        function openPopup(text) {
-            document.getElementById('popup-text').innerText = text;
-            document.getElementById('popup').style.display = 'flex';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-    </script>
 
 </body>
 </html>
