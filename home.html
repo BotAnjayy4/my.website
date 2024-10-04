@@ -12,110 +12,28 @@
             background-image: url('https://images.unsplash.com/photo-1501973801540-537f08ccae7b');
             background-size: cover;
             background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: white;
         }
 
         .header {
             background-color: rgba(0, 0, 0, 0.6);
-            color: white;
             padding: 20px;
             text-align: center;
-        }
-
-        .products {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 20px;
-        }
-
-        .product-card {
-            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            margin: 15px;
-            width: 300px;
-            text-align: center;
-            color: black;
-        }
-
-        .product-card img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-
-        .product-card h2 {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .product-card p {
-            font-size: 16px;
-            color: #333;
-        }
-
-        .product-card button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px 0;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .product-card button:hover {
-            background-color: #45a049;
-        }
-
-        /* Popup Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         /* Footer with images */
         .footer {
             text-align: center;
-            margin: 50px 0;
-            color: white;
+            margin-top: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 100%;
         }
 
         .footer img {
@@ -133,77 +51,12 @@
         <p>Temukan produk terbaik dengan harga terjangkau!</p>
     </div>
 
-    <!-- Products Section -->
-    <div class="products">
-        <!-- Product Card 1 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 1">
-            <h2>Produk 1</h2>
-            <p>Deskripsi singkat produk 1. Produk ini adalah salah satu yang terbaik di pasaran.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openModal('modal1')">Detail Produk</button>
-        </div>
-
-        <!-- Product Card 2 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 2">
-            <h2>Produk 2</h2>
-            <p>Deskripsi singkat produk 2. Produk ini cocok untuk berbagai kebutuhan.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openModal('modal2')">Detail Produk</button>
-        </div>
-
-        <!-- Product Card 3 -->
-        <div class="product-card">
-            <img src="https://telegra.ph/file/367e6fd9dbac2255273d5.jpg" alt="Produk 3">
-            <h2>Produk 3</h2>
-            <p>Deskripsi singkat produk 3. Produk unggulan dengan kualitas terbaik.</p>
-            <button onclick="window.open('https://wa.me/6289667644225', '_blank')">Beli Sekarang</button>
-            <button onclick="openModal('modal3')">Detail Produk</button>
-        </div>
-    </div>
-
-    <!-- Pop-up Modals -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <h2>Detail Produk 1</h2>
-            <p>Detail lengkap tentang Produk 1. Produk ini memiliki kualitas terbaik dan sangat populer di pasaran.</p>
-        </div>
-    </div>
-
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <h2>Detail Produk 2</h2>
-            <p>Detail lengkap tentang Produk 2. Cocok untuk berbagai kebutuhan dan harga terjangkau.</p>
-        </div>
-    </div>
-
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('modal3')">&times;</span>
-            <h2>Detail Produk 3</h2>
-            <p>Detail lengkap tentang Produk 3. Produk ini memiliki performa unggulan dan dipercaya banyak konsumen.</p>
-        </div>
-    </div>
-
     <!-- Footer -->
     <div class="footer">
         <p>Terima kasih telah berkunjung ke toko kami!</p>
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/OpenAI_Logo.svg" alt="ChatGPT">
         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
     </div>
-
-    <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "flex";
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
-    </script>
 
 </body>
 </html>
